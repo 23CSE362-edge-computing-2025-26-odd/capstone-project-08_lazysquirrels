@@ -1,0 +1,43 @@
+# Which policy to run: TIMER | ACTUATED | DRLE
+policy: TIMER
+
+# Grid of intersections: N x N
+grid: 5
+
+# Simulation duration (seconds)
+duration_s: 3600
+
+# App-level timing & safety
+app:
+  sensor_period_ms: 1000   # 1 Hz telemetry
+  min_green_s: 3           # no flicker
+  yellow_s: 2
+
+# Network latencies (approximate realistic values)
+network:
+  uplink_ms: 110           # sensor -> ES1
+  downlink_ms: 106         # ES1 -> actuator
+
+# Tiering
+tiers:
+  include_es2: true
+  es2_to_es1_latency_ms: 8
+  es2_to_cloud_latency_ms: 30
+
+# Device capacities (coarse MIPS/RAM)
+devices:
+  cloud:      { mips: 44800, ram: 40000, upBw: 10000, downBw: 10000, ratePerMips: 0.01 }
+  es2:        { mips: 12000, ram: 16000, upBw: 10000, downBw: 10000, ratePerMips: 0.0 }
+  es1:        { mips: 8000,  ram: 8192,  upBw: 10000, downBw: 10000, ratePerMips: 0.0 }
+  controller: { mips: 1000,  ram: 1024,  upBw: 1000,  downBw: 1000,  ratePerMips: 0.0 }
+
+# DRLE wiring (temperory wiring for now!)
+drle:
+  mode: heuristic            # heuristic | http
+  mlEndpoint: "http://localhost:8000"
+  http_timeout_ms: 150
+
+# Output
+results:
+  dir: "results"
+  run_name: "base-5x5"
