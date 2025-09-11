@@ -94,4 +94,19 @@ Follow these steps to build and run the simulation:
 
 ---
 
+## 4. Compare Simulation Runs
+
+The `compare_runs.py` script can be used to compare results between **TIMER** and **ACTUATED** simulations.
+
+### Example Usage:
+```bash
+python compare_runs.py   --timer results/run-base-5x5-timer.csv   --actuated results/run-base-5x5-actuated.csv   --outdir results/compare-base-5x5
+```
+
+### Output:
+- **summary.csv** → Tabular summary of metrics (queue length, latency, power, SLA miss, etc.)
+- **Plots** → PNG files for queue length, halting %, latency, and power usage trends.
+
+---
+
 ✅ You are now ready with **Oracle JDK 21**, **Apache Maven**, and can run the **Edge Traffic Simulation** successfully.
