@@ -1,6 +1,7 @@
 package com.team.traffic.util;
 
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.InputStream;
@@ -49,10 +50,27 @@ public class Config {
         public DeviceSpec es2   = defEs2();
         public DeviceSpec es1   = defEs1();
         public DeviceSpec controller = defCtrl();
-        private static DeviceSpec defCloud(){ var d=new DeviceSpec(); d.mips=44800; d.ram=40000; d.upBw=10000; d.downBw=10000; d.ratePerMips=0.01; return d; }
-        private static DeviceSpec defEs2(){ var d=new DeviceSpec(); d.mips=12000; d.ram=16000; d.upBw=10000; d.downBw=10000; d.ratePerMips=0.0; return d; }
-        private static DeviceSpec defEs1(){ var d=new DeviceSpec(); d.mips=8000;  d.ram=8192;  d.upBw=10000; d.downBw=10000; d.ratePerMips=0.0; return d; }
-        private static DeviceSpec defCtrl(){ var d=new DeviceSpec(); d.mips=1000;  d.ram=1024;  d.upBw=1000;  d.downBw=1000;  d.ratePerMips=0.0; return d; }
+
+        private static DeviceSpec defCloud(){
+            DeviceSpec d = new DeviceSpec();
+            d.mips = 44800; d.ram = 40000; d.upBw = 10000; d.downBw = 10000; d.ratePerMips = 0.01;
+            return d;
+        }
+        private static DeviceSpec defEs2(){
+            DeviceSpec d = new DeviceSpec();
+            d.mips = 12000; d.ram = 16000; d.upBw = 10000; d.downBw = 10000; d.ratePerMips = 0.0;
+            return d;
+        }
+        private static DeviceSpec defEs1(){
+            DeviceSpec d = new DeviceSpec();
+            d.mips = 8000; d.ram = 8192; d.upBw = 10000; d.downBw = 10000; d.ratePerMips = 0.0;
+            return d;
+        }
+        private static DeviceSpec defCtrl(){
+            DeviceSpec d = new DeviceSpec();
+            d.mips = 1000; d.ram = 1024; d.upBw = 1000; d.downBw = 1000; d.ratePerMips = 0.0;
+            return d;
+        }
     }
 
     public static class Drle {
@@ -68,9 +86,12 @@ public class Config {
 
     // ---------- Loader ----------
     public static Config load(Path yamlPath) throws Exception {
-        if (!Files.exists(yamlPath)) throw new IllegalArgumentException("Config not found: " + yamlPath);
+        if (!Files.exists(yamlPath)) {
+            throw new IllegalArgumentException("Config not found: " + yamlPath);
+        }
         try (InputStream in = Files.newInputStream(yamlPath)) {
-            Yaml yaml = new Yaml(new Constructor(Config.class));
+            LoaderOptions lo = new LoaderOptions();
+            Yaml yaml = new Yaml(new Constructor(Config.class, lo));
             Config cfg = yaml.load(in);
             if (cfg == null) throw new IllegalStateException("Empty config file: " + yamlPath);
             return cfg;
@@ -79,8 +100,10 @@ public class Config {
 
     public static Path resolveFromArgs(String[] args) {
         // Look for: --cfg path/to.yaml
-        for (int i=0; i<args.length-1; i++) {
-            if ("--cfg".equals(args[i])) return Path.of(args[i+1]);
+        if (args != null) {
+            for (int i = 0; i < args.length - 1; i++) {
+                if ("--cfg".equals(args[i])) return Path.of(args[i + 1]);
+            }
         }
         return Path.of("configs", "base-5x5.yaml");
     }
