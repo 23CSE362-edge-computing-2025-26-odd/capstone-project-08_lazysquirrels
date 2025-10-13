@@ -28,6 +28,11 @@
             <scope>system</scope>
             <systemPath>C:/Academics/SEM_5/EdgeComputing/capstone-project-08_lazysquirrels/iFogSim/build/ifogsim2.jar</systemPath>
         </dependency>
+        <dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20210307</version>  <!-- or any latest version -->
+</dependency>
     </dependencies>
 
     <build>
