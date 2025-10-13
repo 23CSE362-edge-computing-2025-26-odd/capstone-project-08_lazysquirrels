@@ -24,7 +24,7 @@ public class Runner {
         //    AppGraphBuilder.build("drleApp", 1); // optional no-op
 
         // 5) Run our 1 Hz control loop
-        new ControlLoop(cfg, topo, cfg.results.run_name).run();
+        new ControlLoop(cfg, topo, cfg.results.run_name, "http://localhost:8000").run();
 
         System.out.println("[Runner] Simulation done for policy=" + cfg.policy +
                 " grid=" + cfg.grid + " run=" + cfg.results.run_name);
