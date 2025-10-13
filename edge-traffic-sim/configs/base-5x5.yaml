@@ -31,9 +31,9 @@ devices:
   es1:        { mips: 8000,  ram: 8192,  upBw: 10000, downBw: 10000, ratePerMips: 0.0 }
   controller: { mips: 1000,  ram: 1024,  upBw: 1000,  downBw: 1000,  ratePerMips: 0.0 }
 
-# DRLE wiring (temperory wiring for now!)
+# DRLE wiring
 drle:
-  mode: heuristic            # heuristic | http
+  mode: http            # heuristic | http
   mlEndpoint: "http://localhost:8000"
   http_timeout_ms: 150
 
