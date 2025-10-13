@@ -100,7 +100,7 @@ The `compare_runs.py` script can be used to compare results between **TIMER** an
 
 ### Example Usage:
 ```bash
-python compare_runs.py   --timer results/run-base-5x5-timer.csv   --actuated results/run-base-5x5-actuated.csv   --outdir results/compare-base-5x5
+python compare_runs.py   --timer results/run-base-5x5-timer-5x5.csv   --actuated results/run-base-5x5-actuated-5x5.csv --drle results/run-base-5x5-drle-5x5.csv   --outdir results/compare-base-5x5
 ```
 
 ### Output:
