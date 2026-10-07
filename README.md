@@ -1,7 +1,7 @@
 
-# Edge Computing Capstone Project
+# Decentralized Reinforcement Learning at the Edge for Traffic Light Control
 
-![SUMO traffic simulation snapshot](image.png)
+<img src="image.png" alt="SUMO traffic simulation snapshot" width="100%">
 
 This repository contains a capstone project focused on smart traffic signal control in an edge/fog computing environment. The system combines a Java-based edge simulation, a reinforcement-learning inference service, and the iFogSim2 toolkit to model how distributed edge devices can manage traffic intersections more efficiently than traditional static control policies.
 
@@ -16,9 +16,9 @@ The project explores an intelligent traffic management pipeline where:
 
 This approach is intended to reduce congestion, shorten delays, and improve throughput in urban traffic networks by placing decision-making closer to the data source.
 
-## Architecture
+## System Architecture
 
-![System architecture overview](architecture.png)
+<img src="architecture.png" alt="System architecture overview" width="100%">
 
 
 ## Repository Structure
